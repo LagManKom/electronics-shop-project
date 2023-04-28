@@ -36,3 +36,7 @@ def test_instantiate_form_csv():
     assert Item.string_to_number('5.0') == 5
     assert Item.string_to_number('5.5') == 5
 
+
+def test_repr_str(item):
+    assert repr(item) == "Item('Xiaomi', 10000, 2)"
+    assert str(item) == 'Xiaomi'
