@@ -29,7 +29,7 @@ class Item:
         return f'{self.__name}'
 
     def __add__(self, other):
-        if issubclass(other.__class__, self.__class__):
+        if issubclass(other.__class__, self.__class__) or issubclass(self.__class__, other.__class__):
             return self.quantity + other.quantity
         raise Exception
 
@@ -68,3 +68,9 @@ class Item:
     @staticmethod
     def string_to_number(data):
         return int(float(data))
+
+
+if __name__ == '__main__':
+    item1 = Item("Смартфон", 10000, 20)
+    print(type(item1))
+

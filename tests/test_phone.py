@@ -11,4 +11,4 @@ def test_phone():
     item1 = Item("Смартфон", 10000, 20)
     assert item1 + phone1 == 25
     assert phone1 + phone1 == 10
-    assert phone1
+    assert phone1 + item1
