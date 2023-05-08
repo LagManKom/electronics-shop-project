@@ -16,6 +16,7 @@ class Item:
         :param price: Цена за единицу товара.
         :param quantity: Количество товара в магазине.
         """
+        super().__init__()
         self.__name = name
         self.price = price
         self.quantity = quantity
@@ -73,4 +74,3 @@ class Item:
 if __name__ == '__main__':
     item1 = Item("Смартфон", 10000, 20)
     print(type(item1))
-
