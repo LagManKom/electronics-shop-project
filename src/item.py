@@ -1,4 +1,14 @@
 import csv
+import os
+
+
+class InstantiateCSVError(Exception):
+
+    def __int__(self, *args, **kwargs):
+        self.message = args[0] if args else 'Неизвестная ошибка'
+
+    def __str__(self):
+        return self.message
 
 
 class Item:
@@ -60,11 +70,21 @@ class Item:
             print('Exception: Длина наименования товара превышает 10 символов')
 
     @classmethod
-    def instantiate_from_csv(cls, path='./src/items.csv'):
+    def instantiate_from_csv(cls, path='./items.csv'):
+
+        if not os.path.exists(path):
+            raise FileNotFoundError('Отсутствует файл items.csv')
+
         with open(path, 'r', newline='', encoding='windows-1251') as csvfile:
             reader = csv.DictReader(csvfile)
+            if len([row for row in reader]) < 5:
+                raise InstantiateCSVError('Файл items.csv поврежден')
+
+        with open(path, 'r', newline='', encoding='windows-1251') as csvfile:
+            reader = csv.DictReader(csvfile)
+
             for row in reader:
-                cls(row['name'], row['price'], row['quantity'])
+                print(row['name'], row['price'], row['quantity'])
 
     @staticmethod
     def string_to_number(data):
@@ -73,4 +93,4 @@ class Item:
 
 if __name__ == '__main__':
     item1 = Item("Смартфон", 10000, 20)
-    print(type(item1))
+    item1.instantiate_from_csv()

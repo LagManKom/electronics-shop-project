@@ -35,6 +35,7 @@ def test_instantiate_form_csv():
     assert Item.string_to_number('5') == 5
     assert Item.string_to_number('5.0') == 5
     assert Item.string_to_number('5.5') == 5
+    # with pytest.raises(Exception):
 
 
 def test_repr_str(item):
