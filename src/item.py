@@ -77,8 +77,12 @@ class Item:
 
         with open(path, 'r', newline='', encoding='windows-1251') as csvfile:
             reader = csv.DictReader(csvfile)
-            if len([row for row in reader]) < 5:
-                raise InstantiateCSVError('Файл items.csv поврежден')
+            correct_name = ['Смартфон', 'Ноутбук', 'Кабель', 'Мышка', 'Клавиатура']
+            index = 0
+            for row in reader:
+                if not row['name'] == correct_name[index]:
+                    raise InstantiateCSVError('Файл items.csv поврежден')
+                index += 1
 
         with open(path, 'r', newline='', encoding='windows-1251') as csvfile:
             reader = csv.DictReader(csvfile)
